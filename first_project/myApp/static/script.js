@@ -1,8 +1,6 @@
-//Carrega o navbar dentro de qualquer class que tenha o id navbar
-let navbar = 
-`   <ul class="nav nav-tabs">
+document.getElementById('action_navbar').innerHTML = `<ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"></a>
+            <a class="nav-link active" aria-current="page" href="#">To-Do - Django</a>
         </li>
         <li class="nav-item dropdown"> 
             <a class="nav-link dropdown-toggle" id="dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Tarefas</a>
@@ -20,5 +18,3 @@ let navbar =
         </li>
     </ul>
 `;
-
-document.getElementsByClassName("navbar").innerHTML = navbar;
