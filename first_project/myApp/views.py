@@ -8,6 +8,10 @@ from django.urls import reverse
 # Create your views here.
 
 # ===========================
+# Funções para logar / deslogar
+
+
+# ===========================
 # Funções para listar usuários
 def listarUsuarios(request):
     
