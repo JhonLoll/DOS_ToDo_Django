@@ -5,11 +5,46 @@ from .models import Tarefa, Usuario
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
+# Login / Logout libraries
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 # ===========================
 # Funções para logar / deslogar
+def _login(request):
+    if request.method == "POST":
+        email = request.POST.get("username")
+        senha = request.POST.get("password")
 
+        usuario = authenticate(request, username=email, password=senha)
+
+        if usuario is not None:
+            login(request, usuario)
+            return redirect("listarTarefas")
+        else:
+            return HttpResponse("Usuário ou senha inválidos")
+        
+    return render(request, "login.html")
+
+
+def _logout(request):
+    logout(request)
+    return redirect("login")
+
+def _signup(request):
+    if request.method == "POST":
+        nome = request.POST.get("username")
+        email = request.POST.get("email")
+        senha = request.POST.get("password")
+
+        usuario = Usuario(nome=nome, email=email, senha=senha)
+
+        usuario.save()
+
+    return redirect("login")
+    
 
 # ===========================
 # Funções para listar usuários
