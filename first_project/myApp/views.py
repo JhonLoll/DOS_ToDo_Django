@@ -9,6 +9,21 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+# Importa os serializadores
+from .serializers import TarefaSerializer, UsuarioSerializer
+from rest_framework import viewsets, permissions
+
+# Criação das Viwesets
+class TarefaViewSet(viewsets.ModelViewSet):
+    queryset = Tarefa.objects.all()
+    serializer_class = TarefaSerializer
+    permission_classes = [permissions.AllowAny]
+
+class UsuarioViewSet(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 # Create your views here.
 
 # ===========================
